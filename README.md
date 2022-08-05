@@ -40,7 +40,7 @@ jable
 ```
 
 ### 開始程式 輸入影片網址 下載進度條
-`python main.py`
+`python jable.py`
 
 `https://jable.tv/videos/abp-971/`    
 ![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/2.PNG)  
