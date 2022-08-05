@@ -2,9 +2,9 @@
 
 ### vitual env
 ```
-python3 -m venv env
-source env/bin/activate. # MacOS
-.\env\scripts\activate.bat # Windows
+python -m venv env
+source env/bin/activate # MacOS
+\env\scripts\activate.bat # Windows
 ```
 ### requirements
 `pip install -r requirements.txt`
