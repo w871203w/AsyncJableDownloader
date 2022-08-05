@@ -43,10 +43,10 @@ jable
 `python main.py`
 
 `https://jable.tv/videos/abp-971/`    
-![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/imgage/2.PNG)  
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/2.PNG)  
 
 ### 合併影片
-![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/imgage/3.PNG)
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/3.PNG)
 
 ### 完成
 ![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/4.PNG)
