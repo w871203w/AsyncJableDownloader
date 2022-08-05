@@ -108,7 +108,10 @@ class NewJableCrawler():
             for ts in ts_list:
                 ts_path = os.path.join(video_dir_path, ts)
                 f.write("file '{}'\n".format(ts_path))
-        ffmpeg_path = os.path.join(os.getcwd(), '\\ffmpeg\\bin\\ffmpeg')
+        if os.name == 'nt':
+            ffmpeg_path = os.path.join(os.getcwd(), '\\ffmpeg\\bin\\ffmpeg')
+        elif os.name == 'posix':
+            ffmpeg_path = os.path.join(os.getcwd(), 'ffmpeg')
         ffmpeg_cmd = '{} -f concat -safe 0 -i {} -c copy {}'.format(
             ffmpeg_path, txt_path, os.path.join(video_dir_path, video_name + '.mp4'))
         os.system(ffmpeg_cmd)
@@ -131,4 +134,4 @@ if __name__ == '__main__':
     url = input("輸入要下載的網址：")
     start = time()
     video = NewJableCrawler(url).run()
-    print('時間{:d}分{:d}'.format((time()-start)/60, (time()-start)%60))
+    print('總共用時 {:d} 分 {:d} 秒'.format(int((time()-start)/60), int((time()-start)%60)))
