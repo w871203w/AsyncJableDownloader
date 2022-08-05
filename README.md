@@ -4,13 +4,15 @@
 ```
 python3 -m venv env
 source env/bin/activate. # MacOS
-.\env\scripts\activate.bat #Windows
+.\env\scripts\activate.bat # Windows
 ```
 
 ### requirements
 `pip install -r requirements.txt`
 
-安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
+### ffmpaeg
+
+
 
 ### 執行程式(Execute)
 `python jable.py`
