@@ -2,9 +2,9 @@
 
 ### vitual env
 ```
-python3 -m venv env
-source env/bin/activate. # MacOS
-.\env\scripts\activate.bat # Windows
+python -m venv env
+source env/bin/activate # MacOS
+\env\scripts\activate.bat # Windows
 ```
 ### requirements
 `pip install -r requirements.txt`
@@ -40,18 +40,18 @@ jable
 ```
 
 ### 開始程式 輸入影片網址 下載進度條
-`python main.py`
+`python jable.py`
 
 `https://jable.tv/videos/abp-971/`    
-![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/img/2.PNG)  
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/2.PNG)  
 
 ### 合併影片
-![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/img/3.PNG)
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/3.PNG)
 
 ### 完成
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/4.PNG)
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/4.PNG)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/1.PNG)
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/1.PNG)
 
 
 ### 進階 可改參數
