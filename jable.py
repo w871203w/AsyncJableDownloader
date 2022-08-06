@@ -1,12 +1,12 @@
 import os, re, aiohttp, asyncio
+from time import time
 from config import headers, jable_headers
 from tqdm import tqdm
 
 class NewJableCrawler():
     
     def __init__(self, url = '', base_dir = os.getcwd(), limit = 100):
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(self.loop)
+        self.loop = asyncio.get_event_loop()
         self.url = url
         self.base_dir = base_dir
         self.video_name = self.get_video_name()
@@ -108,10 +108,7 @@ class NewJableCrawler():
             for ts in ts_list:
                 ts_path = os.path.join(video_dir_path, ts)
                 f.write("file '{}'\n".format(ts_path))
-        if os.name == 'nt':
-            ffmpeg_path = os.path.join(os.getcwd(), '\\ffmpeg\\bin\\ffmpeg')
-        elif os.name == 'posix':
-            ffmpeg_path = os.path.join(os.getcwd(), 'ffmpeg')
+        ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg\\bin\\ffmpeg')
         ffmpeg_cmd = '{} -f concat -safe 0 -i {} -c copy {}'.format(
             ffmpeg_path, txt_path, os.path.join(video_dir_path, video_name + '.mp4'))
         os.system(ffmpeg_cmd)
@@ -130,8 +127,24 @@ class NewJableCrawler():
 
     
 if __name__ == '__main__':
+    from parse import args_parse
     from time import time
-    url = input("輸入要下載的網址：")
-    start = time()
-    video = NewJableCrawler(url).run()
+    args = args_parse()
+    if args.txt:
+        with open(args.txt, 'r') as f:
+            urls = f.read().split(',')
+    elif args.url:
+        url = args.url
+    else:
+        url = input('輸入要下載的網址：')
+    start = time()    
+    if urls:
+        for url in urls:
+            print(f'開始下載 {url} ')
+            NewJableCrawler(url).run()
+    elif url:
+        print(f'開始下載 {url} ')
+        NewJableCrawler(url).run()
     print('總共用時 {:d} 分 {:d} 秒'.format(int((time()-start)/60), int((time()-start)%60)))
+
+        
