@@ -108,7 +108,10 @@ class NewJableCrawler():
             for ts in ts_list:
                 ts_path = os.path.join(video_dir_path, ts)
                 f.write("file '{}'\n".format(ts_path))
-        ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg\\bin\\ffmpeg')
+        if os.name == 'nt':
+            ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg\\bin\\ffmpeg')
+        elif os.name == 'posix':
+            ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg')
         ffmpeg_cmd = '{} -f concat -safe 0 -i {} -c copy {}'.format(
             ffmpeg_path, txt_path, os.path.join(video_dir_path, video_name + '.mp4'))
         os.system(ffmpeg_cmd)
