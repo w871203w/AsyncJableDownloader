@@ -1,11 +1,10 @@
 import os, re, aiohttp, asyncio
-from time import time
 from config import headers, jable_headers
 from tqdm import tqdm
 
-class NewJableCrawler():
+class NewJableCrawler:
     
-    def __init__(self, url = '', base_dir = os.getcwd(), limit = 100):
+    def __init__(self, url='', base_dir=os.getcwd(), limit=100):
         self.loop = asyncio.get_event_loop()
         self.url = url
         self.base_dir = base_dir
@@ -112,8 +111,7 @@ class NewJableCrawler():
             ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg\\bin\\ffmpeg')
         elif os.name == 'posix':
             ffmpeg_path = os.path.join(self.base_dir, 'ffmpeg')
-        ffmpeg_cmd = '{} -f concat -safe 0 -i {} -c copy {}'.format(
-            ffmpeg_path, txt_path, os.path.join(video_dir_path, video_name + '.mp4'))
+        ffmpeg_cmd = '{} -f concat -safe 0 -i {} -c copy {}'.format(ffmpeg_path, txt_path, os.path.join(video_dir_path, video_name + '.mp4'))
         os.system(ffmpeg_cmd)
         os.remove(txt_path)
 
@@ -125,29 +123,37 @@ class NewJableCrawler():
             for ts in ts_list:
                 os.remove(os.path.join(video_dir_path, ts))
         else:
-            print('還沒合成影片!')
-        
+            print('還沒合成影片!')      
+
+def main(url, limit=100):
+    video = NewJableCrawler(url, limit=limit)
+    video.run()
 
     
 if __name__ == '__main__':
     from parse import args_parse
     from time import time
+    import multiprocessing as mp
     args = args_parse()
+    urls = []
     if args.txt:
         with open(args.txt, 'r') as f:
-            urls = f.read().split(',')
+            urls = f.read().splitlines()
     elif args.url:
-        url = args.url
+        urls.append(args.url)
     else:
         url = input('輸入要下載的網址：')
-    start = time()    
-    if urls:
+        urls.append(url)
+    start = time()
+    threads = []
+    if len(urls) >= 2:
+        limit = 100 / len(urls)
         for url in urls:
-            print(f'開始下載 {url} ')
-            NewJableCrawler(url).run()
-    elif url:
-        print(f'開始下載 {url} ')
-        NewJableCrawler(url).run()
+            e = mp.Process(target=main, args=(url, limit))
+            e.start()
+            threads.append(e)
+        for thread in threads:
+            thread.join()
+    else:
+        main(urls[0])
     print('總共用時 {:d} 分 {:d} 秒'.format(int((time()-start)/60), int((time()-start)%60)))
-
-        

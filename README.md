@@ -15,9 +15,11 @@ source env/bin/activate # MacOS
 ```
 jable
 │  config.py
+│  parse.py
 │  jable.py
 │  README.md
 │  requirements.txt
+│  urls.txt
 │
 └─ ffmpeg
 │    └─ bin
@@ -30,9 +32,11 @@ jable
 ```
 jable
 │  config.py
+│  parse.py
 │  jable.py
 │  README.md
 │  requirements.txt
+│  urls.txt
 │  ffmpeg.unix
 └─ abp
     │ abp-971.jpg
@@ -48,7 +52,7 @@ jable
 ### 合併影片
 ![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/3.PNG)
 
-### 完成
+### 完成 出現 總共用時 才代表整個跑完
 ![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/4.PNG)
 
 ![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/1.PNG)
@@ -61,3 +65,9 @@ base_dir # 預設是現在的資料夾，可改成自己想要放的資料夾
 limit # 預設 100 可根據自己網路調高或者調低
 NewJableCrawler(url, base_dir=base_dir, limit=400)
 ```
+
+### 新增並行下載
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/6.PNG)
+
+### urls.txt 內容
+![image](https://github.com/w871203w/AsyncJableDownloader/blob/main/image/5.PNG)
